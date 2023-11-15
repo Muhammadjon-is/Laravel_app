@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Http\Request ;
+use Illuminate\Http\Request;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Listing;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +15,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// All listing 
 Route::get('/', function () {
-    return view('listings');
+    return view('listings', [
+        'heading' => "Latest Listings",
+        'listings' => Listing::all()
+    ]);
 });
+
+// Single Listing
+Route::get('listings/{listing}', function (Listing $listing) {
+    return view('listing', [
+        'listing' => $listing
+    ]);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  /*
 Route::get('/hello', function() {
     return  response("<h1>Hello world</h1>", 200)
@@ -50,4 +82,3 @@ Route::get('/search', function(Request $request){
 //         ]
 //             ]);
 // });
-

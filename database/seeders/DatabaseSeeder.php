@@ -16,14 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-          \App\Models\User::factory(5)->create();
+        //   \App\Models\User::factory(5)->create();
 
-
+  $user = User::factory()->create([
+    'name' => 'Isakov Muh',
+    'email' => "isa@gmail.com"
+  ]);
           Listing::factory(6)->create([
-            'user_id' => function () {
-                // Randomly select a user_id from the existing users
-                return User::inRandomOrder()->first()->id;
-            },
+
+             'user_id' => $user->id
         ]);
 
 
